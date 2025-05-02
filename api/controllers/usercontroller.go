@@ -55,7 +55,7 @@ func Login(c *gin.Context) {
 	}
 
 	var user models.User
-	db.DB.Where("mail = ? OR username = ?", body.Email, body.Username).First(&user)
+	db.DB.Where("email = ? OR username = ?", body.Email, body.Username).First(&user)
 	if user.UserID == 0 {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
 	}

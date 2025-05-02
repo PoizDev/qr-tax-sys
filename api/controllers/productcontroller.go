@@ -37,7 +37,7 @@ func CreateProduct(c *gin.Context) {
 		Photo     []byte  `json:"photo"`
 	}
 	if err := c.BindJSON(&body); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request " + err.Error()})
 		return
 	}
 	product := models.Product{
@@ -48,7 +48,7 @@ func CreateProduct(c *gin.Context) {
 	}
 
 	if err := db.DB.Create(&product).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create product"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create product " + err.Error()})
 		return
 	}
 	c.JSON(http.StatusCreated, product)
