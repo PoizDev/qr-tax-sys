@@ -37,7 +37,7 @@ func main() {
 	r.GET("/invoices", controllers.GetAllInvoices)
 	r.GET("/invoices/:id", controllers.GetInvoiceByID)
 	r.GET("/invoices/user/:user_id", controllers.GetInvoiceByUserID)
-	r.POST("/invoices", controllers.AddInvoice)
+	r.POST("/invoices/create", controllers.AddInvoice)
 
 	if err := r.Run(":5000"); err != nil {
 		panic("Failed to start server: " + err.Error())
