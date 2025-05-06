@@ -39,6 +39,9 @@ func main() {
 	r.GET("/invoices/user/:user_id", controllers.GetInvoiceByUserID)
 	r.POST("/invoices/create", controllers.AddInvoice)
 
+	//' QR Code Controller Routes
+	r.GET("/qrcode/:id", controllers.QRCode)
+
 	if err := r.Run(":5000"); err != nil {
 		panic("Failed to start server: " + err.Error())
 	}
