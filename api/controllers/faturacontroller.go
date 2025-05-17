@@ -184,3 +184,26 @@ func AddInvoice(c *gin.Context) {
 
 	c.JSON(http.StatusOK, fullInv)
 }
+
+// controllers/faturacontroller.go
+func AssignInvoice(c *gin.Context) {
+	invID := c.Param("id")
+	var body struct {
+		UserID uint `json:"user_id"`
+	}
+	if err := c.BindJSON(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid payload"})
+		return
+	}
+	var inv models.Fatura
+	if err := db.DB.First(&inv, invID).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Invoice bulunamadı"})
+		return
+	}
+	inv.UserID = body.UserID
+	if err := db.DB.Save(&inv).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Update hatası"})
+		return
+	}
+	c.JSON(http.StatusOK, inv)
+}

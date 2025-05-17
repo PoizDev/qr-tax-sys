@@ -9,7 +9,7 @@ import (
 
 func QRCode(c *gin.Context) {
 	id := c.Param("id")
-	qrCodeUrl := "192.168.137.27:5000/invoices/" + id
+	qrCodeUrl := "10.0.3.178:5000/invoices/" + id
 
 	png, err := qrcode.Encode(qrCodeUrl, qrcode.Medium, 256)
 	if err != nil {

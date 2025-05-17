@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:qrfatura/screen/homescreen.dart';
+import 'package:qrfatura/screen/login.dart';
+import 'package:qrfatura/screen/signup.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(Routes());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+class Routes extends StatelessWidget {
+  @override Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginPage(),
+        '/signup': (context) => const SignupPage(),
+        '/home': (context) => const MainPage()
+      },
     );
   }
 }

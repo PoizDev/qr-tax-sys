@@ -12,7 +12,7 @@ func SyncDB() {
 	db.DB.AutoMigrate(
 		&models.Fatura{},
 		&models.User{},
-		&models.InvoiceItem{},
 		&models.Product{},
+		&models.InvoiceItem{},
 	)
 }

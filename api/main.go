@@ -24,6 +24,10 @@ func main() {
 	r.POST("/signup", controllers.Signup)
 	r.POST("/login", controllers.Login)
 	r.GET("/users", controllers.GetUserList)
+	r.GET("/users/:id", controllers.GetUserByID)
+	r.PUT("/users/:id", controllers.UpdateUser)
+	r.DELETE("/users/:id", controllers.DeleteUser)
+	r.PUT("/users/:id/change-password", controllers.ChangePassword)
 
 	//' Prod Controller Routes
 	r.GET("/products", controllers.GetProductList)
@@ -38,6 +42,7 @@ func main() {
 	r.GET("/invoices/:id", controllers.GetInvoiceByID)
 	r.GET("/invoices/user/:user_id", controllers.GetInvoiceByUserID)
 	r.POST("/invoices/create", controllers.AddInvoice)
+	r.PUT("/invoices/:id/assign", controllers.AssignInvoice)
 
 	//' QR Code Controller Routes
 	r.GET("/qrcode/:id", controllers.QRCode)
